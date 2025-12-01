@@ -6,7 +6,7 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router'; // RouterModule para routerLink
+import { Router, RouterModule } from '@angular/router';
 import { MessageService } from 'primeng/api';
 
 // Importações do PrimeNG
@@ -14,7 +14,7 @@ import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
-import { ToastModule } from 'primeng/toast'; // Para notificações
+import { ToastModule } from 'primeng/toast';
 import { AuthService } from '../../auth/auth.service';
 
 @Component({
@@ -23,7 +23,7 @@ import { AuthService } from '../../auth/auth.service';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RouterModule, // Adicionar para routerLink
+    RouterModule,
     CardModule,
     InputTextModule,
     PasswordModule,
@@ -32,12 +32,12 @@ import { AuthService } from '../../auth/auth.service';
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  providers: [MessageService], // Fornecer MessageService aqui ou globalmente
+  providers: [MessageService],
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   submitted = false;
-  isLoading = false; // Para feedback no botão de login
+  isLoading = false;
 
   constructor(
     private fb: FormBuilder,
@@ -45,9 +45,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private messageService: MessageService
   ) {
-    // Se o utilizador já estiver autenticado, redirecionar para a página principal
     if (this.authService.isAuthenticated()) {
-      this.router.navigate(['/']); // Ajuste para a rota principal/dashboard do Sakai
+      this.router.navigate(['/']);
     }
   }
 
@@ -64,7 +63,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     this.submitted = true;
-    this.loginForm.markAllAsTouched(); // Mostrar erros de validação se houver
+    this.loginForm.markAllAsTouched();
 
     if (this.loginForm.invalid) {
       this.messageService.add({
@@ -86,8 +85,6 @@ export class LoginComponent implements OnInit {
           summary: 'Sucesso',
           detail: 'Login realizado com sucesso!',
         });
-        // Redirecionar para a página principal ou dashboard após o login
-        // A rota '/' é comum para o dashboard no Sakai ou a página que o AuthGuard tentou aceder
         const returnUrl =
           this.router.routerState.snapshot.root.queryParams['returnUrl'] || '/';
         this.router.navigateByUrl(returnUrl);

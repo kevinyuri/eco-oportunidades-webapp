@@ -25,8 +25,8 @@ import { MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { TextareaModule } from 'primeng/textarea';
-import { CheckboxModule } from 'primeng/checkbox'; // IMPORTANTE: Adicionado
-import { TooltipModule } from 'primeng/tooltip'; // IMPORTANTE: Adicionado
+import { CheckboxModule } from 'primeng/checkbox';
+import { TooltipModule } from 'primeng/tooltip';
 import { CursosService } from '../../../services/curso.service';
 import { AuthService } from '../../../auth/auth.service';
 
@@ -48,8 +48,8 @@ import { AuthService } from '../../../auth/auth.service';
     CalendarModule,
     ToastModule,
     ConfirmDialogModule,
-    CheckboxModule, // Adicionado
-    TooltipModule, // Adicionado
+    CheckboxModule,
+    TooltipModule,
   ],
   templateUrl: './cursos-list.component.html',
   styleUrls: ['./cursos-list.component.scss'],
@@ -203,8 +203,6 @@ export class CursosListComponent implements OnInit, OnDestroy {
         cargaHoraria: curso.cargaHoraria,
         modalidade: curso.modalidade,
         dataInicio: curso.dataInicio ? new Date(curso.dataInicio) : null,
-
-        // Novos campos (cast any se a interface ainda não tiver atualizado no front)
         focadoEmSustentabilidade: (curso as any).focadoEmSustentabilidade,
         impactoComunitario: (curso as any).impactoComunitario,
       });

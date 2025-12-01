@@ -11,8 +11,6 @@ import {
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { MessageService } from 'primeng/api';
-
-// Importações do PrimeNG
 import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
@@ -74,8 +72,6 @@ export class RegistroComponent implements OnInit {
           [Validators.required, Validators.email, Validators.maxLength(100)],
         ],
 
-        // --- NOVO CAMPO ODS 11 ---
-        // Obrigatório para garantir o funcionamento da lógica de vagas locais
         bairroResidencia: [
           '',
           [Validators.required, Validators.maxLength(100)],
@@ -129,7 +125,6 @@ export class RegistroComponent implements OnInit {
     }
 
     this.isLoading = true;
-    // Remove confirmarSenha antes de enviar
     const { confirmarSenha, ...dadosUsuarioParaApi } = this.registroForm.value;
 
     this.usuarioService.registrarUsuario(dadosUsuarioParaApi).subscribe({

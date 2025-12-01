@@ -32,12 +32,10 @@ export class AuthService {
   }
 
   public get currentUserValue(): any {
-    // Pode ser User
     return this.currentUserSubject.value;
   }
 
   login(credentials: { email: string; senha: string }): Observable<any> {
-    // Resposta pode ser tipada
     return this.usuarioService.loginUsuario(credentials).pipe(
       tap((response) => {
         if (
@@ -49,15 +47,13 @@ export class AuthService {
           this.setSession(response);
           this.currentUserSubject.next(response.usuario);
         } else {
-          // Lançar erro se a resposta não for o esperado
           console.error('Resposta de login inválida do servidor:', response);
           throw new Error('Resposta de login inválida.');
         }
       }),
       catchError((error) => {
-        // O erro já é tratado no UsuarioService, mas podemos logar ou transformar aqui
         console.error('AuthService: Erro durante o login', error);
-        return throwError(() => error); // Re-lança o erro para o componente tratar
+        return throwError(() => error);
       })
     );
   }
@@ -69,7 +65,7 @@ export class AuthService {
   }): void {
     localStorage.setItem(TOKEN_KEY, authResult.token);
     localStorage.setItem(USER_KEY, JSON.stringify(authResult.usuario));
-    localStorage.setItem(EXPIRATION_KEY, authResult.expiration); // A expiração já vem como string ISO
+    localStorage.setItem(EXPIRATION_KEY, authResult.expiration);
   }
 
   logout(): void {
@@ -77,7 +73,7 @@ export class AuthService {
     localStorage.removeItem(USER_KEY);
     localStorage.removeItem(EXPIRATION_KEY);
     this.currentUserSubject.next(null);
-    this.router.navigate(['/auth/login']); // Redireciona para a página de login
+    this.router.navigate(['/auth/login']);
   }
 
   public getToken(): string | null {
@@ -93,16 +89,12 @@ export class AuthService {
     }
 
     try {
-      // A data de expiração do token JWT geralmente é uma string ISO 8601 ou um timestamp Unix.
-      // O backend está a retornar 'token.ValidTo' que é um DateTime.
       const expirationDate = new Date(expiration);
       return expirationDate.getTime() > new Date().getTime();
     } catch (e) {
       console.error('Erro ao analisar data de expiração do token:', e);
-      this.logout(); // Se houver erro, deslogar por segurança
+      this.logout();
       return false;
     }
   }
-
-  // Opcional: método para renovar token, se o backend suportar refresh tokens
 }

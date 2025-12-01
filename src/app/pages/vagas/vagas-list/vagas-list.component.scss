@@ -1,6 +1,5 @@
 // src/app/pages/vagas/vagas-list/vagas-list.component.scss
 
-// Garante que o card ocupe a altura do seu container grid para alinhar os rodapés
 :host ::ng-deep .p-card {
   display: flex;
   flex-direction: column;

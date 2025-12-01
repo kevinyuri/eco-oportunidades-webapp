@@ -8,7 +8,6 @@ import { environment } from '../../enviroments/environment.development';
   providedIn: 'root',
 })
 export class CursosService {
-  // Usar a apiUrl do ficheiro de ambiente
   private apiUrl = `${environment.apiUrl}/Cursos`;
 
   constructor(private http: HttpClient) {}

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common'; // Para *ngIf
-import { Router, RouterModule } from '@angular/router'; // Para router-outlet e routerLink
+import { CommonModule } from '@angular/common';
+import { Router, RouterModule } from '@angular/router';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
-import { AvatarModule } from 'primeng/avatar'; // Opcional, para avatar do utilizador
+import { AvatarModule } from 'primeng/avatar';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../auth/auth.service';
 
@@ -11,7 +11,7 @@ import { AuthService } from '../../auth/auth.service';
   selector: 'app-main-layout',
   standalone: true,
   imports: [
-    CommonModule, // Importar CommonModule
+    CommonModule,
     RouterModule,
     ToolbarModule,
     ButtonModule,
@@ -43,8 +43,6 @@ export class MainLayoutComponent implements OnInit {
   }
 
   irParaPerfil(): void {
-    // Navegar para a página de perfil do utilizador, se houver
-    // this.router.navigate(['/perfil', this.currentUser?.id]);
     console.log('Navegar para o perfil do utilizador');
   }
 
