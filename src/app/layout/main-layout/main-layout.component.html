@@ -1,0 +1,51 @@
+<div class="layout-wrapper">
+  <p-toolbar>
+    <div class="p-toolbar-group-start">
+      <span class="font-bold text-xl cursor-pointer" routerLink="/"
+        >ECO Oportunidades</span
+      >
+    </div>
+
+    <div class="p-toolbar-group-center">
+      <p-button
+        label="Dashboard"
+        icon="pi pi-home"
+        styleClass="p-button-text"
+        [routerLink]="['/dashboard']"
+      ></p-button>
+      <p-button
+        label="Vagas"
+        icon="pi pi-briefcase"
+        styleClass="p-button-text ml-2"
+        [routerLink]="['/vagas']"
+      ></p-button>
+      <p-button
+        label="Cursos"
+        icon="pi pi-book"
+        styleClass="p-button-text ml-2"
+        [routerLink]="['/cursos']"
+      ></p-button>
+    </div>
+
+    <div class="p-toolbar-group-end">
+      <span *ngIf="currentUser" class="mr-3"
+        >Olá, {{ currentUser.nome || currentUser.email }}</span
+      >
+      <p-button
+        icon="pi pi-user"
+        styleClass="p-button-rounded p-button-text mr-2"
+        (click)="irParaPerfil()"
+      ></p-button>
+      <p-button
+        label="Logout"
+        icon="pi pi-sign-out"
+        styleClass="p-button-danger p-button-text"
+        (click)="logout()"
+      ></p-button>
+    </div>
+  </p-toolbar>
+
+  <div class="layout-main-content p-3 md:p-4">
+    <router-outlet></router-outlet>
+  </div>
+</div>
